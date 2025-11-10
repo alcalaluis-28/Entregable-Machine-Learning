@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad 1 - Reconocimiento de Imagen</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- CSS Propio -->
+  <link rel="stylesheet" href="CSS/actividad1.css">
+
+  <!-- Librerías de ml5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+</head>
+
+<body>
+  <main class="container text-center py-5">
+    <h1 class="mb-4">Actividad 1: Reconocimiento de Imagen (MobileNet)</h1>
+
+    <!-- Carga de imagen -->
+    <input type="file" id="inputImagen" accept="image/*" class="form-control mb-3" />
+    <img id="imagenSeleccionada" class="imagen-preview" alt="Vista previa" />
+
+    <!-- Botón para identificar -->
+    <button id="btnIdentificar" class="btn btn-primary mt-3">Identificar Imagen</button>
+
+    <!-- Resultado -->
+    <div id="resultado" class="resultado mt-4"></div>
+
+    <!-- Volver al inicio -->
+    <a href="index.html" class="btn btn-secondary mt-4">Volver al Menú</a>
+  </main>
+
+  <!-- Script principal de la actividad 1-->
+  <script>
+    let clasificador;
+    let imagen;
+    let modeloCargado = false;
+
+    // Cargar el modelo cuando la página inicia
+    window.addEventListener('load', () => {
+      clasificador = ml5.imageClassifier('MobileNet', () => {
+        modeloCargado = true;
+        console.log('Modelo MobileNet cargado correctamente');
+      });
+    });
+
+    // Mostrar vista previa de la imagen seleccionada
+    document.getElementById('inputImagen').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const imgElement = document.getElementById('imagenSeleccionada');
+        imgElement.src = URL.createObjectURL(file);
+        imgElement.style.display = 'block';
+      }
+    });
+
+    // Cuando se hace clic en "Identificar"
+    document.getElementById('btnIdentificar').addEventListener('click', () => {
+      if (!modeloCargado) {
+        alert('El modelo aún se está cargando, espera un momento.');
+        return;
+      }
+
+      const img = document.getElementById('imagenSeleccionada');
+      if (!img.src) {
+        alert('Por favor, selecciona una imagen primero.');
+        return;
+      }
+
+      clasificador.classify(img, (error, resultados) => {
+        if (error) {
+          console.error(error);
+          document.getElementById('resultado').textContent = 'Error al clasificar la imagen.';
+        } else {
+          console.log(resultados);
+          const nombre = resultados[0].label;
+          const probabilidad = (resultados[0].confidence * 100).toFixed(2);
+          document.getElementById('resultado').innerHTML =
+            `Resultado: <strong>${nombre}</strong> (${probabilidad}%)`;
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>
