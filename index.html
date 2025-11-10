@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregable Machine Learning</title>
+
+    <!-- Vinculación con la hoja de estilos -->
+    <link rel="stylesheet" href="CSS/index.css" />
+
+    <!-- CDN de Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    
+    <!-- Script de Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CDN de SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <main class="container">
+        <h1 class="text-center my-4">Entregable Machine Learning</h1>
+
+        <!-- Actividades -->
+        <div class="row">
+            <!-- Actividad 1: Reconocimiento de Imagen -->
+            <div class="col-md-4 mb-3">
+                <div class="activity-block">
+                    <label for="reconocimientoImagen" class="activity-label">Reconocimiento de imagen</label>
+                    <button
+                      id="reconocimientoImagen"
+                      class="btn btn-primary w-100"
+                      onclick="confirmarActividad('Ejercicio1.html', 'Actividad 1: Reconocimiento')"
+                    >
+                      Actividad 1: Reconocimiento
+                    </button>
+                </div>
+            </div>
+
+            <!-- Actividad 2: Login -->
+            <div class="col-md-4 mb-3">
+                <div class="activity-block">
+                    <label for="loginActividad" class="activity-label">Login con usuario, contraseña y dibujo Canvas</label>
+                    <button
+                      id="loginActividad"
+                      class="btn btn-primary w-100"
+                      onclick="confirmarActividad('Ejercicio2.html', 'Actividad 2: Login')"
+                    >
+                      Actividad 2: Login
+                    </button>
+                </div>
+            </div>
+
+            <!-- Actividad 3: Teachable Machine -->
+            <div class="col-md-4 mb-3">
+                <div class="activity-block">
+                    <label for="reconocimientoObjetos" class="activity-label">Reconocimiento de 5 objetos con Teachable Machine</label>
+                    <button
+                      id="reconocimientoObjetos"
+                      class="btn btn-primary w-100"
+                      onclick="confirmarActividad('Ejercicio3.html', 'Actividad 3: Teachable Machine')"
+                    >
+                      Actividad 3: Teachable Machine
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Carga del script de JavaScript -->
+    <script src="JS/index.js"></script>
+
+    <!-- Script de Confirmación con SweetAlert2 -->
+    <script>
+      // Función para confirmar y redirigir
+      function confirmarActividad(url, actividad) {
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: `Vas a ingresar a la ${actividad}. ¡No podrás deshacerlo!`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, continuar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirigir a la página de la actividad
+            window.location.href = url;
+          }
+        });
+      }
+    </script>
+</body>
+</html>

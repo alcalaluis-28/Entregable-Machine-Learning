@@ -1,0 +1,88 @@
+/* Estilos generales del body */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #3498db !important;
+}
+
+/* Contenedor principal de la actividad */
+.container {
+  max-width: 450px;
+  padding: 40px;
+  background-color: #ffffff; 
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
+  border-radius: 12px; 
+  transition: box-shadow 0.3s ease-in-out; 
+}
+
+/* Estilo para el encabezado */
+h1 {
+  color: #2c3e50; 
+  font-weight: 400; 
+  margin-bottom: 30px;
+  text-align: center; 
+}
+
+/* Estilo para los bloques de actividad */
+.activity-block {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e0e0e0; 
+  text-align: center;
+}
+
+/* Eliminar la línea de separación en el último bloque de actividad */
+.activity-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Estilo de la etiqueta de la actividad */
+.activity-label {
+  display: block;
+  font-size: 1em;
+  color: #7f8c8d; 
+  margin-bottom: 12px;
+  text-align: center; 
+}
+
+/* Estilo de los botones de las actividades */
+.activity-button {
+  display: inline-block;
+  width: 100%;
+  min-width: 250px;
+  padding: 14px 20px;
+  font-size: 1.1em; /* Botón más grande */
+  font-weight: 600;
+  color: white;
+  background-color: #16a085 !important;
+  border: none;
+  border-radius: 6px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Efecto hover para el botón */
+.activity-button:hover {
+  background-color: #1abc9c; 
+  transform: translateY(-3px); 
+}
+
+/* Mejorando la accesibilidad del sitio */
+.activity-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.4);
+}
+
+/* Sombra y transición suave del contenedor */
+.container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
