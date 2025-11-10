@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 2 - Login con Canvas</title>
+
+  <!-- Librerías necesarias -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="CSS/actividad2.css">
+</head>
+<body>
+
+  <div class="contenedor">
+    <h1>Actividad 2 - Inicio de Sesión</h1>
+
+    <!-- FORMULARIO LOGIN -->
+    <div class="login-box">
+      <label>Usuario:</label>
+      <input type="text" id="usuario" placeholder="Ingresa tu usuario">
+
+      <label>Contraseña:</label>
+      <input type="password" id="clave" placeholder="Ingresa tu contraseña">
+
+      <p>Dibuja tu código de acceso:</p>
+      <div id="canvasContainer"></div>
+
+      <!-- Aquí mostramos el resultado del dibujo -->
+      <p id="resultado">Esperando dibujo...</p>
+
+      <button id="btnLimpiar">Limpiar</button>
+      <button id="btnLogin">Ingresar</button>
+
+      <p id="mensaje"></p>
+    </div>
+  </div>
+
+  <!-- Script principal -->
+  <script>
+    let classifier;
+    let canvas;
+    let resultado = "";
+    let probabilidad = 0;
+
+    function preload() {
+      // Cargar el modelo DoodleNet para reconocimiento de dibujos
+      classifier = ml5.imageClassifier("DoodleNet");
+    }
+
+    function setup() {
+      // Crear el canvas dentro del contenedor
+      canvas = createCanvas(280, 280);
+      canvas.parent("canvasContainer");
+      background(255);
+
+      // Activar clasificación automática del dibujo
+      classifier.classifyStart(canvas, gotResult);
+    }
+
+    function draw() {
+      strokeWeight(20);
+      stroke(0);
+
+      if (mouseIsPressed) {
+        line(pmouseX, pmouseY, mouseX, mouseY);
+      }
+    }
+
+    // Mostrar en pantalla lo que el modelo detecta en tiempo real
+    function gotResult(results) {
+      resultado = results[0].label;
+      probabilidad = (results[0].confidence * 100).toFixed(1);
+
+      document.getElementById("resultado").textContent =
+        `🖌️ Estás dibujando: ${resultado} (${probabilidad}%)`;
+    }
+
+    // Botón limpiar lienzo
+    document.getElementById("btnLimpiar").addEventListener("click", () => {
+      background(255);
+      resultado = "";
+      document.getElementById("resultado").textContent = "Esperando dibujo...";
+    });
+
+    // Botón login
+    document.getElementById("btnLogin").addEventListener("click", () => {
+      const usuario = document.getElementById("usuario").value.trim();
+      const clave = document.getElementById("clave").value.trim();
+
+      if (usuario === "" || clave === "" || resultado === "") {
+        document.getElementById("mensaje").textContent =
+          "Completa todos los campos y dibuja tu código.";
+        return;
+      }
+
+      // Validación simple
+      if (usuario === "admin" && clave === "123" && resultado === "star") {
+        document.getElementById("mensaje").textContent =
+          "Acceso concedido. Bienvenido " + usuario + "!";
+      } else {
+        document.getElementById("mensaje").textContent =
+          "Datos incorrectos o dibujo no reconocido.";
+      }
+    });
+  </script>
+</body>
+</html>
