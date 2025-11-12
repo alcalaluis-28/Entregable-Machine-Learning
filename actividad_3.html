@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clasificación de Objetos con Teachable Machine</title>
+    <link rel="stylesheet" href="CSS/actividad3.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"></script>
+  </head>
+  <body style="background-color: #f4f7fa;">
+    <main>
+      <h1 class="text-center my-4" style="color: #28a745;">
+        Clasificación de Objetos con Teachable Machine
+      </h1>
+      <p class="text-center">
+        En esta actividad, el modelo clasificará objetos en tiempo real utilizando tu webcam y podrá leer la clasificación en voz alta.
+      </p>
+
+      <!-- Contenedor principal dividido en dos columnas -->
+      <div class="main-content">
+        <!-- Clases de Entrenamiento -->
+        <div id="classes-display" class="col-md-6">
+          <h3>Clases de Entrenamiento</h3>
+          <div class="class-image-container">
+            <p>(A) Lente</p>
+            <div><img src="Imagen/lente.jpeg" alt="Lente" /></div>
+          </div>
+          <div class="class-image-container">
+            <p>(B) Mouse</p>
+            <div><img src="Imagen/mause.jpeg" alt="Mouse" /></div>
+          </div>
+          <div class="class-image-container">
+            <p>(C) Peine</p>
+            <div><img src="Imagen/peine.jpeg" alt="Peine" /></div>
+          </div>
+          <div class="class-image-container">
+            <p>(D) Protector Solar</p>
+            <div><img src="Imagen/protectorsolar.jpeg" alt="Protector Solar" /></div>
+          </div>
+          <div class="class-image-container">
+            <p>(E) Tijera</p>
+            <div><img src="Imagen/tijera.jpeg" alt="Tijera" /></div>
+          </div>
+        </div>
+
+        <!-- Video y Controles de Voz -->
+        <div id="webcam-and-controls" class="col-md-6">
+          <div id="video-container">
+            <!-- Video de la cámara -->
+          </div>
+          <div id="controls">
+            <h2>Configuración de Voz</h2>
+            <form action="" autocomplete="off" id="speech-form">
+              <div>
+                <label for="voices">Seleccionar voz:</label>
+                <select name="voices" id="voices">
+                  <!-- Opciones de voces dinámicas -->
+                </select>
+              </div>
+              <div>
+                <label for="pitch">Tono:</label>
+                <input type="range" min="0" max="2" step="0.25" value="1" id="pitch" />
+              </div>
+              <div>
+                <label for="rate">Velocidad:</label>
+                <input type="range" min="0" max="2" step="0.25" value="1" id="rate" />
+              </div>
+              <div>
+                <label for="volume">Volumen:</label>
+                <input type="range" min="0" max="1" step="0.1" value="1" id="volume" />
+              </div>
+            </form>
+            <button type="button" id="speak">Hablar Clasificación Actual</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="JS/actividad3.js"></script>
+  </body>
+</html>

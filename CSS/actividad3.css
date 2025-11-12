@@ -1,0 +1,149 @@
+/* Estilos generales para el cuerpo */
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #6e747a;
+  color: #444;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Contenedor principal */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Estilo para el título */
+h1 {
+  color: #2d88d2;
+  margin-bottom: 80px;
+  font-weight: 600;
+}
+
+/* Contenedor principal en 2 columnas usando Flexbox */
+.main-content {
+  display: flex;
+  justify-content: space-between; /* Separa las columnas */
+  gap: 20px; /* Espaciado entre las columnas */
+  margin-top: 25px;
+  flex-wrap: wrap; /* Ajusta en pantallas pequeñas */
+}
+
+/* Contenedor para las clases (izquierda) */
+#classes-display {
+  width: 45%; /* Ancho de la columna de clases */
+  background-color: #97a52f;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  margin-bottom: 20px;
+}
+
+/* Efecto hover para las clases */
+#classes-display:hover {
+  transform: translateY(-2px); /* Mueve el contenedor hacia arriba */
+}
+
+/* Estilo de las imágenes dentro de las clases */
+.class-image-container img {
+  width: 80px; /* Tamaño ajustado de la imagen */
+  height: 80px; /* Altura ajustada */
+  border-radius: 8px;
+  object-fit: cover;
+  border: 3px solid #2980b9; /* Bordes azules */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Estilo de los contenedores de las imágenes */
+.class-image-container {
+  margin-bottom: 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px 15px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fafafa;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Efecto hover para las imágenes */
+.class-image-container:hover {
+  background-color: #f7f7ff;
+  border-color: #0a4166;
+}
+
+/* Contenedor para video y controles (derecha) */
+#webcam-and-controls {
+  width: 45%; /* Ancho de la columna de video y controles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Estilo para el contenedor del video */
+#video-container {
+  width: 380px; /* Ancho del video */
+  height: 320px; /* Altura del video */
+  border: 5px solid #b93c29;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los controles de voz */
+#controls {
+  width: 380px;
+  background-color: #d5e3b2;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  text-align: left;
+}
+
+/* Efecto hover en los controles */
+#controls:hover {
+  transform: translateY(-2px);
+}
+
+/* Estilo para el botón "Hablar" */
+#speak {
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 15px;
+}
+
+/* Efecto hover para el botón "Hablar" */
+#speak:hover {
+  background-color: #1e7e34;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 850px) {
+  .main-content {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+  }
+
+  #classes-display,
+  #controls,
+  #video-container {
+    width: 90%; /* Ajusta el tamaño para pantallas pequeñas */
+    max-width: 380px; /* Limita el tamaño máximo */
+  }
+}
